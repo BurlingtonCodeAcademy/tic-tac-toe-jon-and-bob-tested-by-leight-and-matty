@@ -16,7 +16,7 @@ for (i = 0; i < 9; i++) {
   square.addEventListener('click', play);
 }
 
-function winCheck(e) {
+function winCheck() {
   console.log(currentArray);
   if (currentArray.includes('cell-0') && currentArray.includes('cell-1') && currentArray.includes('cell-2') || currentArray.includes('cell-3') && currentArray.includes('cell-4') &&  currentArray.includes('cell-5') || currentArray.includes('cell-6') &&  currentArray.includes('cell-7') &&  currentArray.includes('cell-8') || currentArray.includes('cell-0') &&  currentArray.includes('cell-3') &&  currentArray.includes('cell-6') || currentArray.includes('cell-1') &&  currentArray.includes('cell-4') &&  currentArray.includes('cell-7') || currentArray.includes('cell-3') &&  currentArray.includes('cell-4') &&  currentArray.includes('cell-5') || currentArray.includes('cell-0') &&  currentArray.includes('cell-4') &&  currentArray.includes('cell-8') || currentArray.includes('cell-2') &&  currentArray.includes('cell-4') &&  currentArray.includes('cell-6')) {
     if (player === letterX) {
