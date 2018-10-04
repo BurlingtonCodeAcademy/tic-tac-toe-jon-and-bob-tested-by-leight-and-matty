@@ -54,3 +54,10 @@ div.board {
   overflow: hidden;
   margin: 0 auto;
 }
+
+#x {
+  margin-top: 38px;
+}
+#o {
+  margin-top: 38px;
+}
