@@ -17,7 +17,7 @@ for (i = 0; i < 9; i++) {
 }
 
 function winCheck() {
-  if (currentArray.includes('cell-0' && 'cell-1' && 'cell-2')) {
+  if (currentArray.includes('cell-0' && 'cell-1' && 'cell-2' || 'cell-3' && 'cell-4' && 'cell-5')) {
     if (player === letterX) {
       alert('Player X Wins!!!')
     } else {alert('Player O Wins!!')}
