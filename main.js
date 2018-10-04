@@ -16,11 +16,13 @@ for (i = 0; i < 9; i++) {
   square.addEventListener('click', play);
 }
 
-function winCheck() {
-  if (currentArray.includes('cell-0' && 'cell-1' && 'cell-2' || 'cell-3' && 'cell-4' && 'cell-5')) {
+function winCheck(e) {
+  console.log(currentArray);
+  if (currentArray.includes('cell-0') && currentArray.includes('cell-1') && currentArray.includes('cell-2') || currentArray.includes('cell-3') && currentArray.includes('cell-4') &&  currentArray.includes('cell-5') || currentArray.includes('cell-6') &&  currentArray.includes('cell-7') &&  currentArray.includes('cell-8') || currentArray.includes('cell-0') &&  currentArray.includes('cell-3') &&  currentArray.includes('cell-6') || currentArray.includes('cell-1') &&  currentArray.includes('cell-4') &&  currentArray.includes('cell-7') || currentArray.includes('cell-3') &&  currentArray.includes('cell-4') &&  currentArray.includes('cell-5') || currentArray.includes('cell-0') &&  currentArray.includes('cell-4') &&  currentArray.includes('cell-8') || currentArray.includes('cell-2') &&  currentArray.includes('cell-4') &&  currentArray.includes('cell-6')) {
     if (player === letterX) {
       alert('Player X Wins!!!')
-    } else {alert('Player O Wins!!')}
+    } else {
+      alert('Player O Wins!!')}
   }
   //if winningMoves[[cell-0, cell-1, cell-2],[3, 4, 5],[6, 7, 8],[0, 3, 6],[1, 4, 7],[2, 5, 8],[0, 4, 8],[2, 4, 6]] player '?' wins, strike through winning slots
 }
@@ -29,7 +31,6 @@ function play(e) {
   if (e.currentTarget.innerHTML === '') {
  e.currentTarget.innerHTML = player;
  currentArray.push(e.currentTarget.id);
- console.log(currentArray);
  winCheck();
  toggle();}
 }
