@@ -18,22 +18,21 @@ for (i = 0; i < 9; i++) {
 }
 
 function winCheck() {
-  while (numberOfMoves < 10) {
-    if (currentArray.includes('cell-0') && currentArray.includes('cell-1') && currentArray.includes('cell-2') || currentArray.includes('cell-3') && currentArray.includes('cell-4') && currentArray.includes('cell-5') || currentArray.includes('cell-6') && currentArray.includes('cell-7') && currentArray.includes('cell-8') || currentArray.includes('cell-0') && currentArray.includes('cell-3') && currentArray.includes('cell-6') || currentArray.includes('cell-1') && currentArray.includes('cell-4') &&currentArray.includes('cell-7') || currentArray.includes('cell-2') && currentArray.includes('cell-5') && currentArray.includes('cell-8') || currentArray.includes('cell-0') && currentArray.includes('cell-4') && currentArray.includes('cell-8') || currentArray.includes('cell-2') && currentArray.includes('cell-4') && currentArray.includes('cell-6')) {
-      alert(player + 'Wins!!')
+  console.log(currentArray);
+  //refactor by creating an array of win conditions and  then just checking against the array
+  if (currentArray.includes('cell-0') && currentArray.includes('cell-1') && currentArray.includes('cell-2') || currentArray.includes('cell-3') && currentArray.includes('cell-4') &&  currentArray.includes('cell-5') || currentArray.includes('cell-6') &&  currentArray.includes('cell-7') &&  currentArray.includes('cell-8') || currentArray.includes('cell-0') &&  currentArray.includes('cell-3') &&  currentArray.includes('cell-6') || currentArray.includes('cell-1') &&  currentArray.includes('cell-4') &&  currentArray.includes('cell-7') || currentArray.includes('cell-3') &&  currentArray.includes('cell-4') &&  currentArray.includes('cell-5') || currentArray.includes('cell-0') &&  currentArray.includes('cell-4') &&  currentArray.includes('cell-8') || currentArray.includes('cell-2') &&  currentArray.includes('cell-4') &&  currentArray.includes('cell-6')) {
+    if (player === letterX) {
+      alert('Player X Wins!!!')
+    } else {
+      alert('Player O Wins!!')}
   }
   //if winningMoves[[cell-0, cell-1, cell-2],[3, 4, 5],[6, 7, 8],[0, 3, 6],[1, 4, 7],[2, 5, 8],[0, 4, 8],[2, 4, 6]] player '?' wins, strike through winning slots
-  //algorithmicly check if adjacent squares include the same image then win; state machine?
-  //or add an if else that specifies player array
 }
 
 function play(e) {
   if (e.currentTarget.innerHTML === '') {
  e.currentTarget.innerHTML = player;
  currentArray.push(e.currentTarget.id);
- console.log(currentArray);
- console.log(playerXMoves);
- console.log(playerOMoves);
  winCheck();
  toggle();
    }
