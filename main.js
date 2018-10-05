@@ -1,12 +1,10 @@
 let letterX = '<img src="x.png" height="120" width="120" id="x">';
 let letterO = '<img src="o.png" height="120" width="120" id="o">';
-let squares = document.getElementsByClassName('squares');
 let player = letterX
 let numPlayers = 1;
 let playerTurn = document.getElementById('turn');
 let playerXMoves = [];
 let playerOMoves = [];
-//let winningCombos = [['cell-0', 'cell-1', 'cell-2'], ['cell-3', 'cell-4', 'cell-5'], ['cell-6', 'cell-7', 'cell-8'], ['cell-0', 'cell-3', 'cell-6'], ['cell-1', 'cell-4', 'cell-7'], ['cell-2', 'cell-5', 'cell-8'], ['cell-0', 'cell-4', 'cell-8'], ['cell-2', 'cell-4', 'cell-6']];
 let currentArray = playerXMoves;
 let turnCount = 0;
 let lineDiv = document.getElementById('line0');
@@ -24,7 +22,7 @@ function clearBoard() {
 
 function zeroPlayer() {
   numPlayers = 0;
-  clearBoard();
+  start();
   computerPlayer2();
 }
 
@@ -50,10 +48,20 @@ function start() {
 }
 
 function stop() {
-  for (i = 0; i < 9; i++) {
-    square = document.getElementById(`cell-${i}`);
+  let squares = allSquares();
+
+  for (let square in squares) {
     square.removeEventListener('click', play);
   }
+}
+
+function allSquares() {
+  let squares = [];
+  for (i = 0; i < 9; i++) {
+    square = document.getElementById(`cell-${i}`);
+    squares.push(square);
+  }
+  return squares;
 }
 
 function xOrOWins() {
@@ -99,35 +107,61 @@ function winCheck() {
 };
 
 function computerPlayer() {
-  while (player === letterO) {
-    for (i = 0; i < 9; i++) {
-      square = document.getElementById(`cell-${Math.floor(Math.random()*9)}`);
-      if (square.innerHTML === '') {
-        square.innerHTML = player;
-        currentArray.push(square.id);
-        turnCount++;
-        winCheck();
-        if (numPlayers === 0) {
-          computerPlayer2();
-        }
-        return true;
+  if (player === letterO) {
+    let randomNum = Math.floor(Math.random() * 9)
+    square = document.getElementById(`cell-${randomNum}`);
+    console.log(square);
+    if (square.innerHTML === '') {
+      square.innerHTML = player;
+      currentArray.push(square.id);
+      winCheck();
+      if (numPlayers === 0) {
+        computerPlayer2();
+      }
+      else {
+        computerPlayer();
       }
     }
   }
 }
 
+//find empty squares
+//choose random empty square
+//play in random empty square
+//change players
+
+function findEmptySquares () {
+  let emptySquares = []
+  let squares = allSquares();
+  for (let square of squares) {
+    if (square.innerHTML === '') {
+      emptySquares.push(square)
+    }
+  }
+  return emptySquares;
+};
+
+function choseRandomEmpty () {
+  let availableSquares = findEmptySquares();
+  let randomSquare = 
+  availableSquares[Math.floor(Math.random() * availableSquares.length)];
+  return randomSquare;
+};
+
+
+//maybe unnecessary
 function computerPlayer2() {
-  while (player === letterX) {
-    for (i = 0; i < 9; i++) {
-      square = document.getElementById(`cell-${Math.floor(Math.random()*9)}`);
-      if (square.innerHTML === '') {
-        square.innerHTML = player;
-        currentArray.push(square.id);
-        turnCount++;
-        winCheck();
-        computerPlayer();
-      }
-      return true;
+  if (player === letterX) {
+    square = document.getElementById(`cell-${randomNum}`);
+    console.log(square);
+    if (square.innerHTML === '') {
+      square.innerHTML = player;
+      currentArray.push(square.id);
+      winCheck();
+      computerPlayer();
+    }
+    else {
+      computerPlayer2();
     }
   }
 }
