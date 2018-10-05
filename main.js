@@ -18,6 +18,8 @@ function clearBoard() {
   turnCount = 0;
 }
 
+document.querySelector('button').addEventListener('click', start);
+
 function start() {
   for (i = 0; i < 9; i++) {
     square = document.getElementById(`cell-${i}`);
@@ -25,8 +27,6 @@ function start() {
     square.addEventListener('click', play);
   }
 }
-
-start();
 
 function stop() {
   for (i = 0; i < 9; i++) {
@@ -38,10 +38,10 @@ function stop() {
 function winCheck() {
   if (currentArray.includes('cell-0') && currentArray.includes('cell-1') && currentArray.includes('cell-2') || currentArray.includes('cell-3') && currentArray.includes('cell-4') && currentArray.includes('cell-5') || currentArray.includes('cell-6') && currentArray.includes('cell-7') && currentArray.includes('cell-8') || currentArray.includes('cell-0') && currentArray.includes('cell-3') && currentArray.includes('cell-6') || currentArray.includes('cell-1') && currentArray.includes('cell-4') && currentArray.includes('cell-7') || currentArray.includes('cell-2') && currentArray.includes('cell-5') && currentArray.includes('cell-8') || currentArray.includes('cell-0') && currentArray.includes('cell-4') && currentArray.includes('cell-8') || currentArray.includes('cell-2') && currentArray.includes('cell-4') && currentArray.includes('cell-6')) {
     if (player === letterX) {
-      playerTurn.innerHTML = 'Player X Wins!!!';
+      playerTurn.innerHTML = 'Congratulations!  Player X Wins!!!';
       stop();
     } else {
-      playerTurn.innerHTML = 'Player O Wins!!!';
+      playerTurn.innerHTML = 'Congratulations!  Player O Wins!!!';
       stop();
     }
   } else if (turnCount === 9) {
