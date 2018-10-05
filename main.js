@@ -2,6 +2,7 @@ let letterX = '<img src="x.png" height="120" width="120" id="x">';
 let letterO = '<img src="o.png" height="120" width="120" id="o">';
 let squares = document.getElementsByClassName('squares');
 let player = letterX
+let numPlayers = 1;
 let playerTurn = document.getElementById('turn');
 let playerXMoves = [];
 let playerOMoves = [];
@@ -13,6 +14,7 @@ let lineDiv = document.getElementById('line0');
 function clearBoard() {
   lineDiv.innerHTML = '';
   square.innerHTML = '';
+  player = letterX
   playerXMoves = [];
   playerOMoves = [];
   currentArray = playerXMoves;
@@ -20,7 +22,18 @@ function clearBoard() {
   turnCount = 0;
 }
 
-document.querySelector('button').addEventListener('click', start);
+function singlePlayer() {
+  numPlayers = 1;
+  start();
+}
+function twoPlayers() {
+  numPlayers = 2;
+  start();
+}
+
+document.getElementById('onePlayer').addEventListener('click', singlePlayer);
+document.getElementById('twoPlayer').addEventListener('click', twoPlayers);
+document.getElementById('restart').addEventListener('click', start);
 
 function start() {
   for (i = 0; i < 9; i++) {
@@ -100,7 +113,9 @@ function play(e) {
     currentArray.push(e.currentTarget.id);
     turnCount++;
     winCheck();
-    computerPlayer();
+    if (numPlayers === 1) {
+      computerPlayer();
+    }
   }
 }
 

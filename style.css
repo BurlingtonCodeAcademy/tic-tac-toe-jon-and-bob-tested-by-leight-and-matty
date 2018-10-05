@@ -96,6 +96,25 @@ button {
   margin-top: 38px;
 }
 
+#onePlayer {
+  -webkit-transform:
+      translateY(0px)
+      translateX(-200px)
+      rotate(0deg); 
+  position: absolute;
+}
+
+#restart {
+  align-content: center;
+}
+
+#twoPlayer {
+  -webkit-transform:
+      translateY(0px)
+      translateX(65px)
+      rotate(0deg); 
+  position: absolute;
+}
 
 #top-row {
   width: 590px;
