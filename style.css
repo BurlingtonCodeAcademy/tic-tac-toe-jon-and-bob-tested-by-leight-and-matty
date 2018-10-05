@@ -96,15 +96,15 @@ button {
   margin-top: 38px;
 }
 
-#onePlayer {
+#zeroPlayer {
   -webkit-transform:
       translateY(0px)
-      translateX(-200px)
+      translateX(-230px)
       rotate(0deg); 
   position: absolute;
 }
 
-#restart {
+#onePlayer {
   align-content: center;
 }
 
