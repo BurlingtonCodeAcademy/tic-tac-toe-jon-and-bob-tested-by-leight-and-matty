@@ -78,12 +78,28 @@ function winCheck() {
   }
 }
 
+function computerPlayer() {
+  while (player === letterO) {
+    for (i = 0; i < (9 - turnCount); i++) {
+      square = document.getElementById(`cell-${Math.floor(Math.random()*9)}`);
+      if (square.innerHTML === '') {
+        square.innerHTML = player;
+        currentArray.push(square.id);
+        turnCount++;
+        winCheck();
+        return true;
+      }
+    }
+  }
+}
+
 function play(e) {
   if (e.currentTarget.innerHTML === '') {
     e.currentTarget.innerHTML = player;
     currentArray.push(e.currentTarget.id);
     turnCount++;
     winCheck();
+    computerPlayer();
   }
 }
 
@@ -99,4 +115,3 @@ function toggle() {
     playerTurn.innerHTML = "It is player X's turn";
   };
 };
-
