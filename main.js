@@ -22,6 +22,12 @@ function clearBoard() {
   turnCount = 0;
 }
 
+function zeroPlayer() {
+  numPlayers = 0;
+  clearBoard();
+  computerPlayer2();
+}
+
 function singlePlayer() {
   numPlayers = 1;
   start();
@@ -33,7 +39,7 @@ function twoPlayers() {
 
 document.getElementById('onePlayer').addEventListener('click', singlePlayer);
 document.getElementById('twoPlayer').addEventListener('click', twoPlayers);
-document.getElementById('restart').addEventListener('click', start);
+document.getElementById('zeroPlayer').addEventListener('click', zeroPlayer);
 
 function start() {
   for (i = 0; i < 9; i++) {
@@ -94,15 +100,34 @@ function winCheck() {
 
 function computerPlayer() {
   while (player === letterO) {
-    for (i = 0; i < (9 - turnCount); i++) {
+    for (i = 0; i < 9; i++) {
       square = document.getElementById(`cell-${Math.floor(Math.random()*9)}`);
       if (square.innerHTML === '') {
         square.innerHTML = player;
         currentArray.push(square.id);
         turnCount++;
         winCheck();
+        if (numPlayers === 0) {
+          computerPlayer2();
+        }
         return true;
       }
+    }
+  }
+}
+
+function computerPlayer2() {
+  while (player === letterX) {
+    for (i = 0; i < 9; i++) {
+      square = document.getElementById(`cell-${Math.floor(Math.random()*9)}`);
+      if (square.innerHTML === '') {
+        square.innerHTML = player;
+        currentArray.push(square.id);
+        turnCount++;
+        winCheck();
+        computerPlayer();
+      }
+      return true;
     }
   }
 }
