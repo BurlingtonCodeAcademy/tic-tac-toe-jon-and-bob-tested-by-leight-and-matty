@@ -73,3 +73,10 @@ function toggle() {
   };
 };
 
+function computerPlayer() {
+  while (player === letterO) {
+    let randomSquare = `cell-${math.floor(math.random()*(8) + 1)}`
+    play(randomSquare)
+  }
+}
+
