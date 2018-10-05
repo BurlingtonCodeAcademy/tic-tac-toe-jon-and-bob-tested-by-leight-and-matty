@@ -5,7 +5,7 @@ let player = letterX
 let playerTurn = document.getElementById('turn');
 let playerXMoves = [];
 let playerOMoves = [];
-let winningCombos = [['cell-0', 'cell-1', 'cell-2'], ['cell-3', 'cell-4', 'cell-5'], ['cell-6', 'cell-7', 'cell-8'], ['cell-0', 'cell-3', 'cell-6'], ['cell-1', 'cell-4', 'cell-7'], ['cell-2', 'cell-5', 'cell-8'], ['cell-0', 'cell-4', 'cell-8'], ['cell-2', 'cell-4', 'cell-6']];
+//let winningCombos = [['cell-0', 'cell-1', 'cell-2'], ['cell-3', 'cell-4', 'cell-5'], ['cell-6', 'cell-7', 'cell-8'], ['cell-0', 'cell-3', 'cell-6'], ['cell-1', 'cell-4', 'cell-7'], ['cell-2', 'cell-5', 'cell-8'], ['cell-0', 'cell-4', 'cell-8'], ['cell-2', 'cell-4', 'cell-6']];
 let currentArray = playerXMoves;
 let turnCount = 0;
 //let activeCell = document.querySelectorAll('squares');
@@ -41,33 +41,35 @@ function winCheck() {
     if (player === letterX) {
       playerTurn.innerHTML = 'Congratulations!  Player X Wins!!!';
       stop();
-    } else {
+    } else if (player === letterO) {
       playerTurn.innerHTML = 'Congratulations!  Player O Wins!!!';
       stop();
     }
-      toggle();
+  } 
+  else {
+    toggle();
   }
 };
 
-  function play(e) {
-    if (e.currentTarget.innerHTML === '') {
-      e.currentTarget.innerHTML = player;
-      currentArray.push(e.currentTarget.id);
-      turnCount++;
-      winCheck();
-    }
+function play(e) {
+  if (e.currentTarget.innerHTML === '') {
+    e.currentTarget.innerHTML = player;
+    currentArray.push(e.currentTarget.id);
+    turnCount++;
+    winCheck();
   }
+}
 
-  function toggle() {
-    if (player === letterX) {
-      player = letterO;
-      currentArray = playerOMoves;
-      playerTurn.innerHTML = "It is player O's turn";
-    }
-    else {
-      player = letterX;
-      currentArray = playerXMoves;
-      playerTurn.innerHTML = "It is player X's turn";
-    };
+function toggle() {
+  if (player === letterX) {
+    player = letterO;
+    currentArray = playerOMoves;
+    playerTurn.innerHTML = "It is player O's turn";
+  }
+  else {
+    player = letterX;
+    currentArray = playerXMoves;
+    playerTurn.innerHTML = "It is player X's turn";
   };
+};
 
