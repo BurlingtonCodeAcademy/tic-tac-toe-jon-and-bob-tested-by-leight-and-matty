@@ -7,9 +7,10 @@ let playerXMoves = [];
 let playerOMoves = [];
 let currentArray = playerXMoves;
 let turnCount = 0;
-//let activeCell = document.querySelectorAll('squares');
+let lineDiv = document.getElementById('line0');
 
 function clearBoard() {
+  lineDiv.innerHTML = '';
   square.innerHTML = '';
   playerXMoves = [];
   playerOMoves = [];
@@ -35,15 +36,40 @@ function stop() {
   }
 }
 
+function xOrOWins() {
+  if (player === letterX) {
+    playerTurn.innerHTML = 'Congratulations!  Player X Wins!!!';
+  } else {
+    playerTurn.innerHTML = 'Congratulations!  Player O Wins!!!';
+  }
+  stop();
+}
+
 function winCheck() {
-  if (currentArray.includes('cell-0') && currentArray.includes('cell-1') && currentArray.includes('cell-2') || currentArray.includes('cell-3') && currentArray.includes('cell-4') && currentArray.includes('cell-5') || currentArray.includes('cell-6') && currentArray.includes('cell-7') && currentArray.includes('cell-8') || currentArray.includes('cell-0') && currentArray.includes('cell-3') && currentArray.includes('cell-6') || currentArray.includes('cell-1') && currentArray.includes('cell-4') && currentArray.includes('cell-7') || currentArray.includes('cell-2') && currentArray.includes('cell-5') && currentArray.includes('cell-8') || currentArray.includes('cell-0') && currentArray.includes('cell-4') && currentArray.includes('cell-8') || currentArray.includes('cell-2') && currentArray.includes('cell-4') && currentArray.includes('cell-6')) {
-    if (player === letterX) {
-      playerTurn.innerHTML = 'Congratulations!  Player X Wins!!!';
-      stop();
-    } else {
-      playerTurn.innerHTML = 'Congratulations!  Player O Wins!!!';
-      stop();
-    }
+  if (currentArray.includes('cell-0') && currentArray.includes('cell-1') && currentArray.includes('cell-2')) {
+    lineDiv.innerHTML = '<div id="top-row"></div>';
+    xOrOWins();
+  } else if (currentArray.includes('cell-3') && currentArray.includes('cell-4') && currentArray.includes('cell-5')) {
+    lineDiv.innerHTML = '<div id="middle-row"></div>';
+    xOrOWins();
+  } else if (currentArray.includes('cell-6') && currentArray.includes('cell-7') && currentArray.includes('cell-8')) {
+    lineDiv.innerHTML = '<div id="bottom-row"></div>';
+    xOrOWins();
+  } else if (currentArray.includes('cell-0') && currentArray.includes('cell-3') && currentArray.includes('cell-6')) {
+    lineDiv.innerHTML = '<div id="left-col"></div>';
+    xOrOWins();
+  } else if (currentArray.includes('cell-1') && currentArray.includes('cell-4') && currentArray.includes('cell-7')) {
+    lineDiv.innerHTML = '<div id="middle-col"></div>';
+    xOrOWins();
+  } else if (currentArray.includes('cell-2') && currentArray.includes('cell-5') && currentArray.includes('cell-8')) {
+    lineDiv.innerHTML = '<div id="right-col"></div>';
+    xOrOWins();
+  } else if (currentArray.includes('cell-0') && currentArray.includes('cell-4') && currentArray.includes('cell-8')) {
+    lineDiv.innerHTML = '<div id="left-diag"></div>';
+    xOrOWins();
+  } else if (currentArray.includes('cell-2') && currentArray.includes('cell-4') && currentArray.includes('cell-6')) {
+    lineDiv.innerHTML = '<div id="right-diag"></div>';
+    xOrOWins();
   } else if (turnCount === 9) {
     playerTurn.innerHTML = "It's a DRAW.........";
     stop();
