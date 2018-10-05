@@ -10,24 +10,8 @@ body {
   border: solid red;
   border-radius: 12px;
   border-bottom: 1px solid red;
-/*
-  -webkit-transform:
-      translateY(-20px)
-      translateX(5px)
-      rotate(27deg); 
-*/
 }
-.line1 {
-  width: 112px;
-  height: 47px;
-  border-bottom: 1px solid red;
-  -webkit-transform:
-      translateY(-20px)
-      translateX(5px)
-      rotate(27deg); 
-  position: absolute;
-  /* top: -20px; */
-}
+
 
 h2 {
   font-size: 50px;
@@ -112,3 +96,84 @@ button {
   margin-top: 38px;
 }
 
+
+#top-row {
+  width: 590px;
+  height: 590px;
+  border-bottom: 15px solid red;
+  -webkit-transform:
+      translateY(-500px)
+      translateX(5px)
+      rotate(0deg); 
+  position: absolute;
+}
+#middle-row {
+  width: 590px;
+  height: 590px;
+  border-bottom: 15px solid red;
+  -webkit-transform:
+  translateY(-300px)
+  translateX(5px)
+  rotate(0deg); 
+position: absolute;
+}
+#bottom-row {
+  width: 590px;
+  height: 590px;
+  border-bottom: 15px solid red;
+  -webkit-transform:
+      translateY(-100px)
+      translateX(5px)
+      rotate(0deg); 
+  position: absolute;
+}
+#left-col {
+  width: 590px;
+  height: 590px;
+  border-bottom: 15px solid red;
+  -webkit-transform:
+      translateY(0px)
+      translateX(100px)
+      rotate(90deg); 
+  position: absolute;
+}
+#middle-col {
+  width: 590px;
+  height: 590px;
+  border-bottom: 15px solid red;
+  -webkit-transform:
+      translateY(0px)
+      translateX(300px)
+      rotate(90deg); 
+  position: absolute;
+}
+#right-col {
+  width: 590px;
+  height: 590px;
+  border-bottom: 15px solid red;
+  -webkit-transform:
+      translateY(0px)
+      translateX(500px)
+      rotate(90deg); 
+  position: absolute;
+}
+#left-diag {
+  width: 690px;
+  height: 690px;
+  border-bottom: 15px solid red;
+  -webkit-transform:
+      translateY(-300px)
+      translateX(200px)
+      rotate(45deg); 
+  position: absolute;
+}
+#right-diag {
+  width: 690px;
+  height: 690px;
+  border-bottom: 15px solid red;
+  -webkit-transform:
+      translateY(200px)
+      translateX(200px)
+      rotate(135deg); 
+  position: absolute;
+}
