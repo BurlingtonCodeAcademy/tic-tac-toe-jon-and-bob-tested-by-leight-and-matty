@@ -7,10 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Tic Tac Toe</title>
   <link type="text/css" rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Concert+One" rel="stylesheet">
 </head>
 
 <body>
-  <h2>Tic Tac Toe</h2>
+  <h2 class="hline">Tic Tac Toe</h2>
+  <div><h3 id="turn">It is player X's turn</h3></div>
   <div class="board">
     <div id="row-1">
       <div id="cell-0" class="squares"></div>
@@ -28,9 +30,11 @@
       <div id="cell-8" class="squares"></div>
     </div>
   </div>
-  <div id="turn">It is player X's turn</div>
+  <br>
+  <div class="hline"></div>
+    <button>START OVER</button>
   <script src="main.js"></script>
-  <script>play();</script>
+  <script>start();</script>
 
 </body>
 

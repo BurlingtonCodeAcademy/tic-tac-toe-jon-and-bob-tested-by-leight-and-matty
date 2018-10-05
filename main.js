@@ -19,6 +19,8 @@ function clearBoard() {
   turnCount = 0;
 }
 
+document.querySelector('button').addEventListener('click', start);
+
 function start() {
   for (i = 0; i < 9; i++) {
     square = document.getElementById(`cell-${i}`);
@@ -35,22 +37,15 @@ function stop() {
 }
 
 function winCheck() {
-  for (let combo of winningCombo) {
-    if (currentArray.includes(combo)) {
-      if (player === letterX) {
-        playerTurn.innerHTML = 'Player X Wins!!!';
-        stop();
-      } else {
-        playerTurn.innerHTML = 'Player O Wins!!!';
-        stop();
-      }
-    } else if (turnCount === 9) {
-      playerTurn.innerHTML = "It's a DRAW.........";
+  if (currentArray.includes('cell-0') && currentArray.includes('cell-1') && currentArray.includes('cell-2') || currentArray.includes('cell-3') && currentArray.includes('cell-4') && currentArray.includes('cell-5') || currentArray.includes('cell-6') && currentArray.includes('cell-7') && currentArray.includes('cell-8') || currentArray.includes('cell-0') && currentArray.includes('cell-3') && currentArray.includes('cell-6') || currentArray.includes('cell-1') && currentArray.includes('cell-4') && currentArray.includes('cell-7') || currentArray.includes('cell-2') && currentArray.includes('cell-5') && currentArray.includes('cell-8') || currentArray.includes('cell-0') && currentArray.includes('cell-4') && currentArray.includes('cell-8') || currentArray.includes('cell-2') && currentArray.includes('cell-4') && currentArray.includes('cell-6')) {
+    if (player === letterX) {
+      playerTurn.innerHTML = 'Congratulations!  Player X Wins!!!';
+      stop();
+    } else {
+      playerTurn.innerHTML = 'Congratulations!  Player O Wins!!!';
       stop();
     }
-    else {
       toggle();
-    }
   }
 };
 

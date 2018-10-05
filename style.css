@@ -1,16 +1,40 @@
 body {
-  background-color: rgb(255, 255, 255);
-  width: 1000px;
+  width: 700px;
   margin: 10px auto;
   text-align: center;
   padding: 10px;
   user-select: none;
+  background-color: white;
+  font-family: 'Concert One', cursive;
+  color: red;
+  border: solid red;
+  border-radius: 12px;
+  border-bottom: 1px solid red;
+/*
+  -webkit-transform:
+      translateY(-20px)
+      translateX(5px)
+      rotate(27deg); 
+*/
+}
+.line1 {
+  width: 112px;
+  height: 47px;
+  border-bottom: 1px solid red;
+  -webkit-transform:
+      translateY(-20px)
+      translateX(5px)
+      rotate(27deg); 
+  position: absolute;
+  /* top: -20px; */
 }
 
 h2 {
-  font-size: 30px;
+  font-size: 50px;
   text-align: center;
-  height: 75px;
+  height: 60px;
+  font-family: 'Concert One', cursive;
+  color: red;
 }
 
 span{
@@ -55,9 +79,36 @@ div.board {
   margin: 0 auto;
 }
 
+.hline {
+  padding-bottom: 10px;
+  border-bottom: 2px solid red;
+}
+
+button {
+  background-color: white;
+  font-family: 'Concert One', cursive;
+  color: red;
+  font-size: 30px;
+  text-align: center;
+  height: 40px;
+  border: solid red;
+  border-radius: 8px;
+  margin-top: 28px;
+  margin-bottom: 25px;
+}
+
+#turn {
+  font-family: 'Concert One', cursive;
+  color: red;
+  font-size: 30px;
+  text-align: center;
+  height: 40px;
+}
+
 #x {
   margin-top: 38px;
 }
 #o {
   margin-top: 38px;
 }
+
