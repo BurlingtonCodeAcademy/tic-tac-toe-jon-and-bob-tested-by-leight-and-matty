@@ -12,13 +12,16 @@ let lineDiv = document.getElementById('line0');
 
 function clearBoard() {
   lineDiv.innerHTML = '';
-  square.innerHTML = '';
   player = letterX
   playerXMoves = [];
   playerOMoves = [];
   currentArray = playerXMoves;
   playerTurn.innerHTML = "It is player X's turn";
   turnCount = 0;
+  for (let i = 0; i < 9; i++) {
+    let clearSquare = document.getElementById(`cell-${i}`);
+    clearSquare.innerHTML = '';
+  }
 }
 
 function zeroPlayer() {
@@ -36,22 +39,25 @@ function twoPlayers() {
   start();
 }
 
-document.getElementById('onePlayer').addEventListener('click', singlePlayer);
-document.getElementById('twoPlayer').addEventListener('click', twoPlayers);
-document.getElementById('zeroPlayer').addEventListener('click', zeroPlayer);
+function buttonStart() {
+  document.getElementById('onePlayer').addEventListener('click', singlePlayer);
+  document.getElementById('twoPlayer').addEventListener('click', twoPlayers);
+  document.getElementById('zeroPlayer').addEventListener('click', zeroPlayer);
+}
 
 function start() {
-  for (i = 0; i < 9; i++) {
-    square = document.getElementById(`cell-${i}`);
-    clearBoard();
-    square.addEventListener('click', play);
+  for (let i = 0; i < 9; i++) {
+    let startSquare = document.getElementById(`cell-${i}`);
+    startSquare.addEventListener('click', play);
+    startSquare.innerHTML = '';
   }
+  clearBoard();
 }
 
 function stop() {
-  for (i = 0; i < 9; i++) {
-    square = document.getElementById(`cell-${i}`);
-    square.removeEventListener('click', play);
+  for (let i = 0; i < 9; i++) {
+    let stopSquare = document.getElementById(`cell-${i}`);
+    stopSquare.removeEventListener('click', play);
   }
 }
 
@@ -97,38 +103,44 @@ function winCheck() {
   }
 }
 
-function computerPlayer() {
-  while (player === letterO) {
-    for (i = 0; i < 9; i++) {
-      square = document.getElementById(`cell-${Math.floor(Math.random()*9)}`);
-      if (square.innerHTML === '') {
-        square.innerHTML = player;
-        currentArray.push(square.id);
-        turnCount++;
-        winCheck();
-        if (numPlayers === 0) {
-          computerPlayer2();
-        }
-        return true;
-      }
+let emptyArray = [];
+function findEmptySquare() {
+  emptyArray = [];
+  console.log("emptyArray1 = " + emptyArray);
+  for (let i = 0; i < 9; i++) {
+    if (document.getElementById("cell-" + i).innerHTML === '') {
+    console.log("cell-" + i);
+    emptyArray.push("cell-" + i);
     }
+  }
+  console.log("emptyArray2 = " + emptyArray);
+    return emptyArray[(Math.floor(Math.random() * emptyArray.length))];
+}
+
+function computerPlayer() {
+  let emptySquare = findEmptySquare();
+  console.log("Player 1");
+  console.log("emptySquare = " + emptySquare);
+  document.getElementById(emptySquare).innerHTML = player;
+  console.log("emptySquare = " + emptySquare);
+  currentArray.push(emptySquare);
+  turnCount++;
+  winCheck();
+  if (numPlayers === 0) {
+    setTimeout(computerPlayer2, 500);
   }
 }
 
 function computerPlayer2() {
-  while (player === letterX) {
-    for (i = 0; i < 9; i++) {
-      square = document.getElementById(`cell-${Math.floor(Math.random()*9)}`);
-      if (square.innerHTML === '') {
-        square.innerHTML = player;
-        currentArray.push(square.id);
-        turnCount++;
-        winCheck();
-        computerPlayer();
-      }
-      return true;
-    }
-  }
+  let emptySquare = findEmptySquare();
+  console.log("Player 2");
+  console.log("emptySquare = " + emptySquare);
+  document.getElementById(emptySquare).innerHTML = player;
+  console.log("emptySquare = " + emptySquare);
+  currentArray.push(emptySquare);
+  turnCount++;
+  winCheck();
+  setTimeout(computerPlayer, 500);
 }
 
 function play(e) {
@@ -155,3 +167,5 @@ function toggle() {
     playerTurn.innerHTML = "It is player X's turn";
   };
 };
+
+buttonStart();
