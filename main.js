@@ -114,15 +114,14 @@ function findEmptySquare() {
     return "cell-" + cornerArray[(Math.floor(Math.random() * 4))];
   } else {
     let emptyArray = [];
-    console.log("emptyArray1 = " + emptyArray);
     for (let i = 0; i < 9; i++) {
       if (document.getElementById("cell-" + i).innerHTML === '') {
-        console.log("cell-" + i);
         emptyArray.push("cell-" + i);
       }
     }
-    console.log("emptyArray2 = " + emptyArray);
-    let currentSpace = (currentArray.slice(currentArray.length - 1)).slice(5);
+    console.log("emptyArray = " + emptyArray);
+    let currentSpace = +currentArray[currentArray.length - 1].slice(5);
+    console.log("currentSpace = " + currentSpace);
     if (emptyArray.includes("cell-" + (currentSpace + 2))) {
       console.log("+2");
       return "cell-" + (currentSpace + 2);
@@ -153,6 +152,18 @@ function findEmptySquare() {
     } else if (emptyArray.includes("cell-" + (currentSpace - 5))) {
       console.log("-5");
       return "cell-" + (currentSpace - 5);
+    } else if (emptyArray.includes("cell-" + (currentSpace + 1))) {
+      console.log("+5");
+      return "cell-" + (currentSpace + 1);
+    } else if (emptyArray.includes("cell-" + (currentSpace - 1))) {
+      console.log("-5");
+      return "cell-" + (currentSpace - 1);
+    } else if (emptyArray.includes("cell-" + (currentSpace + 7))) {
+      console.log("+5");
+      return "cell-" + (currentSpace + 7);
+    } else if (emptyArray.includes("cell-" + (currentSpace - 7))) {
+      console.log("-5");
+      return "cell-" + (currentSpace - 7);
     } else {
       console.log("random");
       return emptyArray[(Math.floor(Math.random() * emptyArray.length))];
@@ -164,7 +175,6 @@ function computerPlayer() {
   if (winner === null) {
     let emptySquare = findEmptySquare();
     console.log("Player 1");
-    console.log("emptySquare = " + emptySquare);
     document.getElementById(emptySquare).innerHTML = player;
     console.log("emptySquare = " + emptySquare);
     currentArray.push(emptySquare);
@@ -180,7 +190,6 @@ function computerPlayer2() {
   if (winner === null) {
     let emptySquare = findEmptySquare();
     console.log("Player 2");
-    console.log("emptySquare = " + emptySquare);
     document.getElementById(emptySquare).innerHTML = player;
     console.log("emptySquare = " + emptySquare);
     currentArray.push(emptySquare);
