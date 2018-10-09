@@ -9,8 +9,10 @@ let playerOMoves = [];
 let currentArray = playerXMoves;
 let turnCount = 0;
 let lineDiv = document.getElementById('line0');
+let winner = null;
 
 function clearBoard() {
+  winner = null;
   lineDiv.innerHTML = '';
   player = letterX
   playerXMoves = [];
@@ -49,7 +51,6 @@ function start() {
   for (let i = 0; i < 9; i++) {
     let startSquare = document.getElementById(`cell-${i}`);
     startSquare.addEventListener('click', play);
-    startSquare.innerHTML = '';
   }
   clearBoard();
 }
@@ -63,8 +64,10 @@ function stop() {
 
 function xOrOWins() {
   if (player === letterX) {
+    winner = "x";
     playerTurn.innerHTML = 'Congratulations!  Player X Wins!!!';
   } else {
+    winner = "o";
     playerTurn.innerHTML = 'Congratulations!  Player O Wins!!!';
   }
   stop();
@@ -103,44 +106,88 @@ function winCheck() {
   }
 }
 
-let emptyArray = [];
 function findEmptySquare() {
-  emptyArray = [];
-  console.log("emptyArray1 = " + emptyArray);
-  for (let i = 0; i < 9; i++) {
-    if (document.getElementById("cell-" + i).innerHTML === '') {
-    console.log("cell-" + i);
-    emptyArray.push("cell-" + i);
+  if (document.getElementById("cell-4").innerHTML === '') {
+    return "cell-4";
+  } else if (turnCount === 1) {
+    let cornerArray = [0, 2, 6, 8];
+    return "cell-" + cornerArray[(Math.floor(Math.random() * 4))];
+  } else {
+    let emptyArray = [];
+    console.log("emptyArray1 = " + emptyArray);
+    for (let i = 0; i < 9; i++) {
+      if (document.getElementById("cell-" + i).innerHTML === '') {
+        console.log("cell-" + i);
+        emptyArray.push("cell-" + i);
+      }
+    }
+    console.log("emptyArray2 = " + emptyArray);
+    let currentSpace = (currentArray.slice(currentArray.length - 1)).slice(5);
+    if (emptyArray.includes("cell-" + (currentSpace + 2))) {
+      console.log("+2");
+      return "cell-" + (currentSpace + 2);
+    } else if (emptyArray.includes("cell-" + (currentSpace - 2))) {
+      console.log("-2");
+      return "cell-" + (currentSpace - 2);
+    } else if (emptyArray.includes("cell-" + (currentSpace + 4))) {
+      console.log("+4");
+      return "cell-" + (currentSpace + 4);
+    } else if (emptyArray.includes("cell-" + (currentSpace - 4))) {
+      console.log("-4");
+      return "cell-" + (currentSpace - 4);
+    } else if (emptyArray.includes("cell-" + (currentSpace + 6))) {
+      console.log("+6");
+      return "cell-" + (currentSpace + 6);
+    } else if (emptyArray.includes("cell-" + (currentSpace - 6))) {
+      console.log("-6");
+      return "cell-" + (currentSpace - 6);
+    } else if (emptyArray.includes("cell-" + (currentSpace + 3))) {
+      console.log("+3");
+      return "cell-" + (currentSpace + 3);
+    } else if (emptyArray.includes("cell-" + (currentSpace - 3))) {
+      console.log("-3");
+      return "cell-" + (currentSpace - 3);
+    } else if (emptyArray.includes("cell-" + (currentSpace + 5))) {
+      console.log("+5");
+      return "cell-" + (currentSpace + 5);
+    } else if (emptyArray.includes("cell-" + (currentSpace - 5))) {
+      console.log("-5");
+      return "cell-" + (currentSpace - 5);
+    } else {
+      console.log("random");
+      return emptyArray[(Math.floor(Math.random() * emptyArray.length))];
     }
   }
-  console.log("emptyArray2 = " + emptyArray);
-    return emptyArray[(Math.floor(Math.random() * emptyArray.length))];
 }
 
 function computerPlayer() {
-  let emptySquare = findEmptySquare();
-  console.log("Player 1");
-  console.log("emptySquare = " + emptySquare);
-  document.getElementById(emptySquare).innerHTML = player;
-  console.log("emptySquare = " + emptySquare);
-  currentArray.push(emptySquare);
-  turnCount++;
-  winCheck();
-  if (numPlayers === 0) {
-    setTimeout(computerPlayer2, 500);
+  if (winner === null) {
+    let emptySquare = findEmptySquare();
+    console.log("Player 1");
+    console.log("emptySquare = " + emptySquare);
+    document.getElementById(emptySquare).innerHTML = player;
+    console.log("emptySquare = " + emptySquare);
+    currentArray.push(emptySquare);
+    turnCount++;
+    winCheck();
+    if (numPlayers === 0) {
+      setTimeout(computerPlayer2, 500);
+    }
   }
 }
 
 function computerPlayer2() {
-  let emptySquare = findEmptySquare();
-  console.log("Player 2");
-  console.log("emptySquare = " + emptySquare);
-  document.getElementById(emptySquare).innerHTML = player;
-  console.log("emptySquare = " + emptySquare);
-  currentArray.push(emptySquare);
-  turnCount++;
-  winCheck();
-  setTimeout(computerPlayer, 500);
+  if (winner === null) {
+    let emptySquare = findEmptySquare();
+    console.log("Player 2");
+    console.log("emptySquare = " + emptySquare);
+    document.getElementById(emptySquare).innerHTML = player;
+    console.log("emptySquare = " + emptySquare);
+    currentArray.push(emptySquare);
+    turnCount++;
+    winCheck();
+    setTimeout(computerPlayer, 500);
+  }
 }
 
 function play(e) {
@@ -150,7 +197,7 @@ function play(e) {
     turnCount++;
     winCheck();
     if (numPlayers === 1) {
-      computerPlayer();
+      setTimeout(computerPlayer, 500);
     }
   }
 }
