@@ -210,6 +210,7 @@ function play(e) {
     }
   } else {
     playerTurn.innerHTML = "Impossible! That cell is already full.";
+    // alert("Impossible! That cell is already full.");
   };
 }
 
