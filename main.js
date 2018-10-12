@@ -208,7 +208,9 @@ function play(e) {
     if (numPlayers === 1) {
       setTimeout(computerPlayer, 500);
     }
-  }
+  } else {
+    playerTurn.innerHTML = "Impossible! That cell is already full.";
+  };
 }
 
 function toggle() {
