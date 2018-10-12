@@ -206,7 +206,7 @@ function play(e) {
     turnCount++;
     winCheck();
     if (numPlayers === 1) {
-      setTimeout(computerPlayer, 500);
+      setTimeout(computerPlayer);
     }
   } else {
     playerTurn.innerHTML = "Impossible! That cell is already full.";
